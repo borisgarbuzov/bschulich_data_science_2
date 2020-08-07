@@ -55,12 +55,12 @@ z <- array(1:24, c(2, 3, 4), dimnames=list(dim1, dim2, dim3))
 z
 
 # data frames----
-patientID <- c(1, 2, 3, 4)
-age <- c(25, 34, 28, 52)
-diabetes <- c("Type1", "Type2", "Type1", "Type2")
-status <- c("Poor", "Improved", "Excellent", "Poor")
-patientdata <- data.frame(patientID, age, diabetes, status)
-patientdata
+ID <- c(10, 20, 30, 40)
+items <- c("book", "pen", "textbook", "pencil case")
+store <- c("Poor", "Improved", "Excellent", "Poor")
+price <- c(2.5, 8.0, 10.0, 7.0)
+df <- data.frame(ID, items, store, price)
+df
 
 # factors----
 status <- c("Poor", "Improved", "Excellent", "Poor")
