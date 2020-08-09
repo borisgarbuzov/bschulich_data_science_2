@@ -26,6 +26,16 @@ x # view object x
 # vectors----
 a <- c(1, 2, 5, 3, 6, -2, 4)
 a
+
+class(a)
+typeof(a)
+is.vector(a)
+
+aMix = c(1, "a")
+class(aMix)
+typeof(aMix)
+is.vector(aMix)
+
 b <- c("one", "two", "three")
 b
 c <- c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE)
@@ -66,9 +76,11 @@ df
 status <- c("Poor", "Improved", "Excellent", "Poor")
 status <- factor(status)
 status
+is.vector(status)
+is.factor(status)
 
 # lists----
-list_data <- list(color_green = "Red", "Green", c(21,32,11), TRUE, 51.23, 119.1)
+list_data <- list(color_green = "Green", "Red", c(21,32,11), TRUE, 51.23, 119.1)
 list_data
 
 # control flow example----
