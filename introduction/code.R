@@ -1,5 +1,8 @@
 rm(list = ls())
 
+
+#----------------1. Basic---------------------------- 
+#
 # start working with R----
 print("Hello World")
 
@@ -23,6 +26,9 @@ x # view object x
 (y = 9 * 3) # put 9 times 3 in y and view the result
 (z = rnorm(5)) # put 5 standard normals into z and print z
 
+#----------------2. Structures---------------------------- 
+#
+#
 # vectors----
 a <- c(1, 2, 5, 3, 6, -2, 4)
 a
@@ -83,6 +89,11 @@ is.factor(status)
 list_data <- list(color_green = "Green", "Red", c(21,32,11), TRUE, 51.23, 119.1)
 list_data
 
+
+#----------------3. Control flow---------------------------- 
+#
+#
+#
 # control flow example----
 category <- 'A'
 price <- 10
@@ -118,11 +129,6 @@ while (i <= 10) {
   cat(i, "\n")
   i = i + 1
 }
-
-cube <- function(x, n) {
-  x^3
-}
-x <- cube(4)
 
 # user defined functions----
 # Create a function to print squares of numbers in sequence.
@@ -231,4 +237,3 @@ retval <- subset(data, as.Date(start_date) > as.Date("2014-01-01"))
 write.csv(retval, "output.csv")
 newdata <- read.csv("output.csv")
 newdata
-
