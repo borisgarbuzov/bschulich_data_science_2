@@ -1,3 +1,5 @@
+rm(list = ls())
+
 # ==================== reading csv ===========================
 setwd("/cloud/project/schulich_data_science_2/introduction/")
 getwd()

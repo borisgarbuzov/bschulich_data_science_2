@@ -1,3 +1,5 @@
+rm(list = ls())
+
 #================ user defined functions =================
 # Create a function to print squares of numbers in sequence.
 my_function <- function(a) {
@@ -20,7 +22,7 @@ my_power <- function(n, x = 2) {
 
 my_power(5)
 my_power(5, 3)
-my_power(x = 3)
+my_power(5, x = 3)
 
 #================ built-in functions =================
 s <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)

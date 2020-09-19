@@ -1,3 +1,5 @@
+rm(list = ls())
+
 #================ start working with R =================
 print("Hello World")
 

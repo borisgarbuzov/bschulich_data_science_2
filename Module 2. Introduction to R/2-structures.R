@@ -1,3 +1,5 @@
+rm(list = ls())
+
 #================ vectors =================
 a <- c(1, 2, 5, 3, 6, -2, 4)
 a
@@ -47,7 +49,7 @@ y
 cells <- c(1, 26, 24, 68)
 rnames <- c("R1", "R2")
 cnames <- c("C1", "C2")
-mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE, 
+mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE,
                    dimnames=list(rnames, cnames))
 mymatrix
 

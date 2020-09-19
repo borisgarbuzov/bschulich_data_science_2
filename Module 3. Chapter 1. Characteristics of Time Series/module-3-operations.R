@@ -1,4 +1,3 @@
-# clean the environment
 rm(list=ls())
 
 # Basic manipulations.

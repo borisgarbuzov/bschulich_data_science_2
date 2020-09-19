@@ -1,3 +1,5 @@
+rm(list = ls())
+
 #================ LLT example =================
 LawOfLargeNumbers <- function(num.tries)
 {
@@ -22,7 +24,7 @@ CentralLimitTheorem <- function(n, r, min, max)
 {
   Samples <- runif(n * r, min = min, max = max)
   Means <- rowMeans(matrix(Samples, nrow = r, ncol = n))
-  hist(Samples, xlab = "sample values", 
+  hist(Samples, xlab = "sample values",
        main = "Sample of uniform distribution")
   hist(Means, xlab = "means", main = "Sample mean")
 }

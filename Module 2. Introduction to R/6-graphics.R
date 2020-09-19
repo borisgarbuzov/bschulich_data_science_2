@@ -1,3 +1,5 @@
+rm(list = ls())
+
 # ==================== pie charts ===========================
 # Create data for the graph.
 x <- c(21, 62, 10, 53)
@@ -11,7 +13,7 @@ pie(x, labels)
 H <- c(7,12,28,3,41)
 M <- c("Mar","Apr","May","Jun","Jul")
 
-# Plot the bar chart 
+# Plot the bar chart
 barplot(H,names.arg=M,xlab="Month",ylab="Revenue",col="blue",
         main="Revenue chart",border="red")
 
@@ -38,7 +40,7 @@ plot(x = input$wt,y = input$mpg,
      xlab = "Weight",
      ylab = "Milage",
      xlim = c(2.5,5),
-     ylim = c(15,30),		 
+     ylim = c(15,30),
      main = "Weight vs Milage"
 )
 

@@ -1,5 +1,4 @@
-# This should be changed according your folder with source code
-setwd("/cloud/project/schulich_data_science_2/chapter-1")
+rm(list = ls())
 
 if (suppressWarnings(!require("astsa"))) {
   install.packages("astsa")
