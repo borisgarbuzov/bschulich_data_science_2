@@ -5,13 +5,6 @@ if (suppressWarnings(!require("astsa"))) {
   library(astsa)
 }
 
-# Example 4.21 THIS EXAMPLE DOESN'T WORK FOR NOW BECAUSE OF NA
-# # sr = mvspec(cbind(soi,rec), kernel("daniell",9), plot.type="coh", plot=FALSE)
-# sr$df                     # df = 35.8625
-# f = qf(.999, 2, sr$df-2)  # f = 8.529792
-# C = f/(18+f)              # C = 0.3188779
-# abline(h = C)
-
 # Example 4.22
 par(mfrow=c(3,1))
 tsplot(soi)                         # plot data
@@ -47,6 +40,6 @@ per = abs(fft(soiltemp-mean(soiltemp))/sqrt(64*36))^2
 per2 = cbind(per[1:32,18:2], per[1:32,1:18])   # this and line below is just rearranging
 per3 = rbind(per2[32:2,], per2)                # results to get 0 frequency in the middle
 
-par(mar=c(1,2.5,0,0)+.1)
+par(mfrow = c(1, 1), mar=c(1,2.5,0,0)+.1)
 persp(-31:31/64, -17:17/36, per3, phi=30, theta=30, expand=.6, ticktype="detailed", xlab="cycles/row",
       ylab="cycles/column", zlab="Periodogram Ordinate")

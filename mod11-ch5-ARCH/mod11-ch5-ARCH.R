@@ -9,7 +9,10 @@ if (suppressWarnings(!require("astsa"))) {
 # # NOTE: I think 'fracdiff' is a dinosaur and I should have changed
 # this in the new edition... so just below, I'll do it using 'arfima',
 # which seems to work well
-library(fracdiff)
+if (suppressWarnings(!require("fracdiff"))) {
+  install.packages("fracdiff")
+  library(fracdiff)
+}
 lvarve = log(varve) - mean(log(varve))
 varve.fd = fracdiff(lvarve, nar=0, nma=0, M=30)
 varve.fd$d  # = 0.3841688
@@ -80,7 +83,10 @@ ar.mle(log(varve))                   # to get AR(8) estimates
 fdGPH(log(varve), bandw=.9)   # m = n^bandw
 
 # Example 5.3
-library(tseries)
+if (suppressWarnings(!require("tseries"))) {
+  install.packages("tseries")
+  library(tseries)
+}
 adf.test(log(varve), k=0)  # DF test
 adf.test(log(varve))       # ADF test
 pp.test(log(varve))        # PP test
@@ -90,7 +96,10 @@ gnpgr = diff(log(gnp))          # get the returns
 u     = sarima(gnpgr, 1, 0, 0)  # fit an AR(1)
 acf2(resid(u$fit), 20)          # get (p)acf of the squared residuals
 
-library(fGarch)
+if (suppressWarnings(!require("fGarch"))) {
+  install.packages("fGarch")
+  library(fGarch)
+}
 summary(garchFit(~arma(1,0)+garch(1,0), gnpgr))
 
 # Example 5.5 and 5.6
