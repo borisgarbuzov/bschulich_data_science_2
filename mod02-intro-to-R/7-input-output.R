@@ -1,7 +1,7 @@
 rm(list = ls())
 
 # ==================== reading csv ===========================
-setwd("/cloud/project/schulich_data_science_2/introduction/")
+setwd("~/schulich_data_science_2/mod02-intro-to-R/")
 getwd()
 data <- read.csv("input.csv")
 data
