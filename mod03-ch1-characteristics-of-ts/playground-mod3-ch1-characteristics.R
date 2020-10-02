@@ -145,7 +145,7 @@ tsp(myTimeSeries)
 
 # -----acf experiment------------------ 
 x = rnorm(100, sd = 5)
-acf(x, type = "covariance")
+acf(x, type = "covariance", ylab = "")
 
 # Example 1.25
 head(soi)
