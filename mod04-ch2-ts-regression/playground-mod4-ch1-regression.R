@@ -178,6 +178,7 @@ plot(fitted(multipleFit))
 persp(x1, x2, zFitted, theta = 30, phi = 30, expand = 0.5, col = "lightblue")
 # wants increasing values
 
+# =========== Smoothing =========================== 
 # Example 2.11
 wgts = c(.5, rep(1,11), .5)/12
 soif = filter(soi, sides=2, filter=wgts)
@@ -191,7 +192,7 @@ plot(nwgts, type="l", ylim = c(-.02,.1), xaxt='n', yaxt='n', ann=FALSE)
 # Example 2.12
 par(mfrow = c(1, 1))
 tsplot(soi)
-lines(ksmooth(time(soi), soi, "normal", bandwidth=1), lwd=2, col=4)
+lines(ksmooth(x = time(soi), y = soi, "normal", bandwidth=1), lwd=2, col=4)
 par(fig = c(.75, 1, .75, 1), new = TRUE) # the insert
 gauss = function(x) { 1/sqrt(2*pi) * exp(-(x^2)/2) }
 x = seq(from = -3, to = 3, by = 0.001)
@@ -203,7 +204,7 @@ tsplot(soi)
 lines(lowess(soi, f=.05), lwd=2, col=4) # El Nino cycle
 lines(lowess(soi), lty=2, lwd=2, col=2) # trend (with default span)
 
-# Example 2.14
+# Example 2.14. Splines
 tsplot(soi)
 lines(smooth.spline(time(soi), soi, spar=.5), lwd=2, col=4)
 lines(smooth.spline(time(soi), soi, spar= 1), lty=2, lwd=2, col=2)
@@ -211,3 +212,18 @@ lines(smooth.spline(time(soi), soi, spar= 1), lty=2, lwd=2, col=2)
 # Example 2.15
 plot(tempr, cmort, xlab="Temperature", ylab="Mortality")
 lines(lowess(tempr, cmort))
+
+# quiz practice
+library(astsa)
+lowess1 = lowess(soi, f=1/10)
+lowess2 = lowess(soi, f=2/3)
+plot.ts(soi)
+lines(lowess(soi, f=1/10), lwd = 2, col = "red")
+lines(lowess(soi, f=2/3), lwd = 2, col = "blue")
+
+# Theoretical quiz question on smoothing
+x = c(1, 2, 3)
+y = c(5, 7, 6)
+plot(x, y, type="o")
+abline(v=1.5)
+

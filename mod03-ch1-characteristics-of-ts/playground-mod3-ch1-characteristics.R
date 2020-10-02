@@ -1,3 +1,5 @@
+rm(list = ls())
+
 if (suppressWarnings(!require("astsa"))) {
   install.packages("astsa")
   library(astsa)
@@ -31,6 +33,11 @@ if (suppressWarnings(!require("xts"))) {
   install.packages("xts")
   library(xts)
 }
+djia
+typeof(djia)
+class(djia)
+time(djia)
+time(djia$Close)
 
 plot(djia$Close)
 head(diff(log(djia$Close)))
@@ -85,6 +92,9 @@ head(x)
 x = x[-(1:50)]
 tsplot(x, main="autoregression")
 
+
+#-------------------------- 
+
 # Example 1.11
 set.seed(154) # so you can reproduce the results
 par(mfrow=c(1,1))
@@ -131,6 +141,11 @@ text(-9, .9, 'y leads')
 myVector = c(1, 2, 3)
 myTimeSeries = ts(myVector)
 tsp(myTimeSeries)
+
+
+# -----acf experiment------------------ 
+x = rnorm(100, sd = 5)
+acf(x, type = "covariance")
 
 # Example 1.25
 head(soi)

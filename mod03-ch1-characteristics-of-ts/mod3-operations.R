@@ -4,6 +4,7 @@ rm(list=ls())
 # 1. Pointwise.
 # a. Unary.
 x = ts(c(10, 20, 30))
+time(x)
 
 # i. Multiplication by constant.
 multipliedX = 2 * x
@@ -13,18 +14,23 @@ logarithmedX = log(x)
 
 # iii. Subtract average (demean or center)
 centeredX = x - mean(x)
+sum(centeredX)
+mean(centeredX)
+
 
 # b. binary.
 # i. Plus
 y = ts(c(100, 200, 300))
 myAddition = x + y
 
+
 # ii. Minus, ...
 mySubtraction = x - y
 
 # 2. Non-local
 # a. Backshift
-lag(x, k=-1)
+y = lag(x, k=-1)
+time(y)
 
 # b. Forward shift
 forwardShiftedX = lag(x, k=1)
@@ -189,7 +195,7 @@ plot(difRandomWalk, type = "l")
 # Linear filter
 
 set.seed(1)
-w = rnorm(500, 0, 1) # 500 N(0,1) variates
+w = rnorm(5, 0, 1) # 500 N(0,1) variates
 v = filter(w, sides=2, filter=rep(1/3, 3)) # moving average
 length(v)
 par(mfrow=c(2,1))
