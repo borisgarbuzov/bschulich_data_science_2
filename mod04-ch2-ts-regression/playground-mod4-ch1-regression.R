@@ -227,3 +227,15 @@ y = c(5, 7, 6)
 plot(x, y, type="o")
 abline(v=1.5)
 
+# V: ds1
+x = c(1, 2, 4, 5)
+y = c(4.8, 8.1, 13.9, 17.2)
+fit = lm(y ~ x)
+summary(fit)
+new = data.frame(c(3, 0, 6))
+predict(fit, newdata = new)
+predict(fit, newdata = 3)
+
+
+
+
