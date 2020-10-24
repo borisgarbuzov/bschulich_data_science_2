@@ -122,7 +122,7 @@ acf1(resid(fit))   # ... but obviously not noise
 if (! require("plot3D"))
   install.packages("plot3D")
 library("plot3D")
-scatter3D(x=x1, y=x2, z=y) 
+# scatter3D(x=x1, y=x2, z=y) 
 # Example 2.10 experiment
 set.seed(1000)  # so you can reproduce these results
 # no noise to see the structure

@@ -22,7 +22,7 @@ plot(expSample)
 plot(expSampleLog)
 
 # too much, try power transformation
-lambda = 1/2
+lambda = 1/3
 expSamplePower = (expSample^lambda - 1) / lambda
 
 hist(expSample)
@@ -43,6 +43,8 @@ whiteNoiseTimesTShiftedLog = log(whiteNoiseTimesTShifted)
 
 plot(whiteNoiseTimesTShifted)
 plot(whiteNoiseTimesTShiftedLog)
+difSeries = diff(whiteNoiseTimesTShifted)
+plot(difSeries)
 
 # 2a. 
 # Logarithm did not help. 

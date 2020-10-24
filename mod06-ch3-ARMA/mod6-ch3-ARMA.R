@@ -21,10 +21,14 @@ set.seed(8675309)         # Jenny, I got your number
 x = rnorm(150, mean=5)    # Jenerate iid N(5,1)s
 arima(x, order=c(1,0,1))  # Jenstimation
 
+#--stopped here---------- 
+  
 # Example 3.8
 ARMAtoMA(ar = .9,  ma = .5,  10)   # first 10 psi-weights
 ARMAtoMA(ar = -.5, ma = -.9, 10)   # first 10 pi-weights
 
+
+# -----------3.2
 # Example 3.11
 z = c(1,-1.5,.75)    # coefficients of the polynomial
 (a = polyroot(z)[1]) # = 1+0.57735i, print one root which is 1 + i 1/sqrt(3)

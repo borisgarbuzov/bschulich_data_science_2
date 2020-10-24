@@ -5,6 +5,16 @@ if (suppressWarnings(!require("astsa"))) {
   library(astsa)
 }
 
+x = rnorm(n=10)
+plot(x)
+
+s = c(rep(0,100), 10*exp(-(1:100)/200)*cos(2*pi*1:100/4))
+x = s + rnorm(200)
+plot.ts(x)
+
+
+
+
 # Example 1.1
 ## Note: tsplot is an astsa version 1.7.7+ script
 ## you can change tsplot to plot for an uglier graphic (here and below)
