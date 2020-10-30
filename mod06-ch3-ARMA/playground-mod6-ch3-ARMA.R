@@ -1,7 +1,7 @@
 rm(list = ls())
 
 if (suppressWarnings(!require("astsa"))) {
-  install.packages("astsa")
+    install.packages("astsa")
   library(astsa)
 }
 
@@ -10,6 +10,10 @@ par(mfrow=c(2,1))
 # in the expressions below, ~ is a space and == is equal
 tsplot(arima.sim(list(order=c(1,0,0), ar=.9), n=100), ylab="x", main=(expression(AR(1)~~~phi==+.9)))
 tsplot(arima.sim(list(order=c(1,0,0), ar=-.9), n=100), ylab="x", main=(expression(AR(1)~~~phi==-.9)))
+
+# arima.sim function will reject coefficients if they don't satisfy condition -1 < phi < 1 for AR(1)
+arima.sim(list(order = c(1, 0, 0), ar = 1), n = 100)
+arima.sim(list(order = c(1, 0, 0), ar = -1), n = 100)
 
 # Example 3.5
 par(mfrow=c(2,1))
@@ -24,6 +28,10 @@ arima(x, order=c(1,0,1))  # Jenstimation
 # Example 3.8
 ARMAtoMA(ar = .9,  ma = .5,  10)   # first 10 psi-weights
 ARMAtoMA(ar = -.5, ma = -.9, 10)   # first 10 pi-weights
+
+# B: Try the easy AR(1) with phi = 1/2
+ARMAtoMA(ar = 1/2,  lag.max = 10) 
+# psi = (1/2, 1/4, 1/8, ...)
 
 # Example 3.11
 z = c(1,-1.5,.75)    # coefficients of the polynomial
@@ -40,6 +48,16 @@ abline(v=seq(0,144,by=12), lty=2)
 ACF = ARMAacf(ar=c(1.5,-.75), ma=0, 50)
 plot(ACF, type="h", xlab="lag")
 abline(h=0)
+
+# B: Simple AR(1), phi = 1/2
+ar1ACF = ARMAacf(ar=c(.5), ma=0, 5)
+ar1ACF
+
+# R does not like non-causal AR
+arima.sim(n = 3, model = list(ar = c(2)))
+# Above we saw that R refuses to simulate non-causal ARMA, 
+# But it may produce the ACF:
+ARMAacf(ar=c(2), lag.max = 5)
 
 # Example 3.12
 par(mfrow=c(1, 1))

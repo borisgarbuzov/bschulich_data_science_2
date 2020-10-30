@@ -5,6 +5,10 @@ if (suppressWarnings(!require("astsa"))) {
 
 # experiment related to Example 2.1------------------ 
 chicken
+tsp(chicken)
+time(chicken)
+(2015.750 - 2015.833)*12
+# so the time difference between two observations is 1/12
 dim(chicken)
 is.ts(chicken)
 chickenMatrix = as.matrix(chicken)

@@ -1,7 +1,7 @@
 rm(list = ls())
 x1 = 1
 n = 10
-a = -2
+a = 1/2
 x = rep(0, n)
 x[1] = x1
 for (i in 2:n)
