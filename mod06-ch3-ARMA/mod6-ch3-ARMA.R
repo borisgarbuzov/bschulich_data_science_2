@@ -5,6 +5,8 @@ if (suppressWarnings(!require("astsa"))) {
   library(astsa)
 }
 
+# Section 3.1 Autoregressive Moving Average Models
+
 # Example 3.2
 par(mfrow=c(2,1))
 # in the expressions below, ~ is a space and == is equal
@@ -24,6 +26,8 @@ arima(x, order=c(1,0,1))  # Jenstimation
 # Example 3.8
 ARMAtoMA(ar = .9,  ma = .5,  10)   # first 10 psi-weights
 ARMAtoMA(ar = -.5, ma = -.9, 10)   # first 10 pi-weights
+
+# Section 3.2 Difference Equations
 
 # Example 3.11
 z = c(1,-1.5,.75)    # coefficients of the polynomial

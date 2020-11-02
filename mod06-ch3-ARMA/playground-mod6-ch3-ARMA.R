@@ -28,6 +28,10 @@ arima(x, order=c(1,0,1))  # Jenstimation
 # Example 3.8
 ARMAtoMA(ar = .9,  ma = .5,  10)   # first 10 psi-weights
 ARMAtoMA(ar = -.5, ma = -.9, 10)   # first 10 pi-weights
+# It alsways gives psi
+# If we want pi, we swap ar and ma parts. 
+# So pi coefficients for the first line 
+# are psi coefficients for the second line. 
 
 # B: Try the easy AR(1) with phi = 1/2
 ARMAtoMA(ar = 1/2,  lag.max = 10) 
@@ -56,10 +60,13 @@ ar1ACF
 # R does not like non-causal AR
 arima.sim(n = 3, model = list(ar = c(2)))
 # Above we saw that R refuses to simulate non-causal ARMA, 
-# But it may produce the ACF:
+# But this time, when we do not specify the order, 
+# it is OK for some reason. 
+# And as always, it is fine to produce the ACF:
 ARMAacf(ar=c(2), lag.max = 5)
 
 # Example 3.12
 par(mfrow=c(1, 1))
 ARMAtoMA(ar=.9, ma=.5, 50)       #  for a list
 plot(ARMAtoMA(ar=.9, ma=.5, 50)) #  for a graph
+# These are psi coefficients

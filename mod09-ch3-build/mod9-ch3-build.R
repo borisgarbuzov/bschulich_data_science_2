@@ -5,11 +5,7 @@ if (suppressWarnings(!require("astsa"))) {
   library(astsa)
 }
 
-# Example 3.38
-set.seed(666)
-x = arima.sim(list(order = c(0,1,1), ma = -0.8), n = 100)
-(x.ima = HoltWinters(x, beta=FALSE, gamma=FALSE))  # α is 1-λ here
-plot(x.ima)
+# Section 3.7 Building ARIMA Models
 
 # Example 3.39, 3.40 and 3.43
 plot(gnp)
@@ -24,6 +20,8 @@ ARMAtoMA(ar=.35, ma=0, 10)  # prints psi-weights
 # Example 3.41
 sarima(log(varve), 0, 1, 1, no.constant=TRUE)   # ARIMA(0,1,1)
 sarima(log(varve), 1, 1, 1, no.constant=TRUE)   # ARIMA(1,1,1)
+
+# Section 3.8 Regression with Autocorrelated Errors
 
 # Example 3.44
 trend  = time(cmort)
@@ -46,6 +44,8 @@ intract = soiL6*dL6  # interaction term
 sarima(rec,2,0,0, xreg = cbind(soiL6, dL6, intract))
 # not in text, but this works better
 # sarima(rec,2,0,0,0,1,1,12, xreg = cbind(soiL6, dL6, intract))
+
+# Section 3.9 Multiplicative Seasonal ARIMA Models
 
 # Example 3.46
 set.seed(666)
