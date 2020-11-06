@@ -53,7 +53,7 @@ basic_forecast (p = 0,
                theta = NULL,
                phi = NULL,
                n = 1000,
-               train_lenght = 80)
+               train_lenght = 990)
 
 basic_forecast (p = 1,
                 d = 0,
@@ -61,7 +61,7 @@ basic_forecast (p = 1,
                 theta = NULL,
                 phi = 1/2,
                 n = 1000,
-                train_lenght = 800)
+                train_lenght = 990)
 
 basic_forecast (p = 0,
                 d = 0,
@@ -69,7 +69,7 @@ basic_forecast (p = 0,
                 theta = 1,
                 phi = NULL,
                 n = 1000,
-                train_lenght = 800)
+                train_lenght = 990)
 
 # ARMA(1, 1)
 basic_forecast (p = 1,
@@ -77,6 +77,26 @@ basic_forecast (p = 1,
                 q = 1,
                 theta = 1,
                 phi = 1/2,
+                n = 1000,
+                train_lenght = 990)
+
+
+# ARIMA(1, 0, 1), 
+basic_forecast (p = 1,
+                d = 0,
+                q = 1,
+                theta = 1,
+                phi = -1/2,
+                n = 1000,
+                train_lenght = 800)
+
+
+# ARIMA(5, 0, 5), 
+basic_forecast (p = 5,
+                d = 0,
+                q = 5,
+                theta = c(1, 1, 1, 1, 1),
+                phi = c(-1/2, -1/2, -1/2, -1/2, -1/2),
                 n = 1000,
                 train_lenght = 800)
 
@@ -98,23 +118,5 @@ basic_forecast (p = 1,
                 n = 1000,
                 train_lenght = 800)
 
-# ARIMA(1, 0, 1), 
-basic_forecast (p = 1,
-                d = 0,
-                q = 1,
-                theta = 1,
-                phi = -1/2,
-                n = 1000,
-                train_lenght = 800)
-
-
-# ARIMA(5, 0, 5), 
-basic_forecast (p = 5,
-                d = 0,
-                q = 5,
-                theta = c(1, 1, 1, 1, 1),
-                phi = c(-1/2, -1/2, -1/2, -1/2, -1/2),
-                n = 1000,
-                train_lenght = 800)
 
 

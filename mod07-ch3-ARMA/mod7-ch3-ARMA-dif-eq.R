@@ -1,7 +1,7 @@
 rm(list = ls())
 x1 = 1
 n = 10
-a = 1/2
+a = -1
 x = rep(0, n)
 x[1] = x1
 for (i in 2:n)
@@ -31,12 +31,12 @@ n = 30
 # starting conditions
 x1 = 1
 x2 = 2
-mySd = 8
+mySd = 0.8
 myNoise = rnorm(n=n, sd = mySd)
 x = c(x1, x2) + myNoise[1:2]
 # coefficients
 a1 = 0
-a2 = -0.9
+a2 = -0.8
 for (i in 3:n)
 {
   deterministicRecursivePart = a1 * x[i-1] + a2 * x[i-2] 

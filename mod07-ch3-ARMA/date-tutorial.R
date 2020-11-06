@@ -94,7 +94,6 @@ unclass(st)
 unclass(tm1)
 # One has attributes, and the other does not, 
 # because the other has the standard time zone. 
-# ----- stopped here ------------
 
 difftime(tm1, as.POSIXct("1970-01-01 00:00:00", tz = "UTC"), units = "secs")
 
