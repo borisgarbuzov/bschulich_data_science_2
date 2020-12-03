@@ -1,32 +1,43 @@
-basic_forecast <- function(p = 0,
-                           d = 0,
-                           q = 0,
-                           theta = NULL,
-                           phi = NULL,
-                           n = 100,
-                           train_lenght = 80)
+
+# Simulate the process with given parametsrs
+# Predictcs the given number of units forward
+# Plots both history, real furture and predicted future. 
+basic_forecast <- function(p = 0, # AR order
+                           d = 0, # Integration order
+                           q = 0, # MA order
+                           theta = NULL, # scalar or vector
+                           phi = NULL, # scalar or vector
+                           n = 100, # total size for simulation
+                           train_lenght = 80) # length of training part
 {
   # remove all the previous plots
   graphics.off()
   
+  # Simulate the whole vector of train and test together
   sim <- arima.sim(model = list(order = c(p, d, q), ar = phi, ma = theta),
                    n = n)
+  # Split the whole array into train and test parts
   train_sim <- ts(sim[1:train_lenght])
   test_sim <- ts(sim[train_lenght:n], start = train_lenght)
   
+  # Estimate the ARIMA coefficients and pack them into a model. 
   arima_fit <- arima(train_sim, order = c(p, d, q))
   
+  # By the estimated model, predict the future of size n - train_lenght
   arima_predict <- predict(arima_fit, n.ahead = n - train_lenght)
+  # Extract the predicted values
   predicted <- arima_predict$pred
+  # Extract the standard errors
   standard_err <- arima_predict$se
   
   # plot forecast with past and confidence interval
   upper <- predicted + standard_err
   lower <- predicted - standard_err
-  arima_title <- paste0('ARIMA(', p, ', ', d, ', ', q, ')')
+  arima_title_prefix = 'Test values with past vs forecast for'
+  arima_title_suffix <- paste0('ARIMA(', p, ', ', d, ', ', q, ')')
   
   plot(test_sim, type = 'l', ylab = 'values',
-       main = paste('Test values with past vs forecast for', arima_title),
+       main = paste(arima_title_prefix, arima_title_suffix),
        ylim = c(min(test_sim, predicted, lower), max(test_sim, predicted, upper)))
   lines(predicted, col = 'red')
   lines(upper, lty = 'dashed', lwd = 2, col = 'springgreen4')
@@ -41,7 +52,7 @@ basic_forecast <- function(p = 0,
   # plot residuals for forecast
   resid_forecast <- test_sim[2:length(test_sim)] - predicted
   plot(resid_forecast, type = 'p', ylab = 'residuals',
-       main = paste('Residuals plot for forecast', arima_title))
+       main = paste('Residuals plot for forecast', arima_title_suffix))
   lines(lowess(resid_forecast), col = 'red')
   abline(h = 0, lty = 3)
 }
@@ -119,4 +130,9 @@ basic_forecast (p = 1,
                 train_lenght = 800)
 
 
+
+x <- arima.sim(list(order = c(1, 0, 0), ar = .8), n = 30)
+fit_ols <- ar.yw(x, order.max = 1)
+fit_ols
+predict(fit_ols, n.ahead = 5)
 

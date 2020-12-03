@@ -5,6 +5,12 @@ if (suppressWarnings(!require("astsa"))) {
   library(astsa)
 }
 
+
+maseries = arima.sim(list(order=c(0,0,1), ma=.9), n=100000)
+acf(maseries)
+
+
+
 # Example 3.2
 par(mfrow=c(2,1))
 # in the expressions below, ~ is a space and == is equal
@@ -21,6 +27,8 @@ tsplot(arima.sim(list(order=c(0,0,1), ma=.9), n=100), ylab="x", main=(expression
 tsplot(arima.sim(list(order=c(0,0,1), ma=-.9), n=100), ylab="x", main=(expression(MA(1)~~~theta==-.9)))
 
 # Example 3.7
+# Parameter redundancy.
+# White noise is fit to ARMA(1,1)
 set.seed(8675309)         # Jenny, I got your number
 x = rnorm(150, mean=5)    # Jenerate iid N(5,1)s
 arima(x, order=c(1,0,1))  # Jenstimation
@@ -32,6 +40,8 @@ ARMAtoMA(ar = -.5, ma = -.9, 10)   # first 10 pi-weights
 # If we want pi, we swap ar and ma parts. 
 # So pi coefficients for the first line 
 # are psi coefficients for the second line. 
+# The authors' package gives this command
+ARMAtoAR(ar=.9, ma=.5, 10)
 
 # B: Try the easy AR(1) with phi = 1/2
 ARMAtoMA(ar = 1/2,  lag.max = 10) 
@@ -48,6 +58,7 @@ ar2 = arima.sim(list(order=c(2,0,0), ar=c(1.5,-.75)), n = 144)
 plot(ar2, axes=FALSE, xlab="Time")
 axis(2); axis(1, at=seq(0,144,by=12)); box()  # work the plot machine
 abline(v=seq(0,144,by=12), lty=2)
+acf(ar2)
 
 ACF = ARMAacf(ar=c(1.5,-.75), ma=0, 50)
 plot(ACF, type="h", xlab="lag")
@@ -70,3 +81,5 @@ par(mfrow=c(1, 1))
 ARMAtoMA(ar=.9, ma=.5, 50)       #  for a list
 plot(ARMAtoMA(ar=.9, ma=.5, 50)) #  for a graph
 # These are psi coefficients
+
+ARMAtoMA(ar = 2, ma = 3, lag.max=1)

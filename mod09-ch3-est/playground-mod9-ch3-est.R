@@ -8,11 +8,34 @@ if (suppressWarnings(!require("astsa"))) {
 # Section 3.5 Estimation
 
 # Example 3.28
-rec.yw = ar.yw(rec, order=2)
+rec.yw = ar.yw(rec, order=2) # fit
+# Experiments------------
+names(rec.yw)
+rec.yw$order
+rec.yw$ar
+rec.yw$aic
+rec.yw$n.used
+rec.yw$n.obs # This may be smaller, excluding NA
+rec.yw$order.max
+rec.yw$partialacf # Lags up to order max
+rec.yw$partialacf
+rec.yw$partialacf
+rec.yw$partialacf
+rec.yw$resid
+rec.yw$method
+rec.yw$series # name
+rec.yw$method
+rec.yw$frequency # inhereted from ts
+rec.yw$call
+rec.yw$frequency
+rec.yw$asy.var.coef # var-cov matrix of coef vector
+# End of experiments------------
+
 rec.yw$x.mean  # = 62.26278 (mean estimate)
 rec.yw$ar      # = 1.3315874, -.4445447  (parameter estimates)
 sqrt(diag(rec.yw$asy.var.coef))  # = .04222637, .04222637  (standard errors)
 rec.yw$var.pred  # = 94.79912 (error variance estimate)
+
 
 rec.pr = predict(rec.yw, n.ahead=24)
 U = rec.pr$pred + rec.pr$se
@@ -25,11 +48,17 @@ lines(L, col="blue", lty="dashed")
 
 # Example 3.29
 set.seed(2)
-ma1 = arima.sim(list(order = c(0,0,1), ma = 0.9), n = 50)
-acf(ma1, plot=FALSE)[1]  # = .507 (lag 1 sample ACF)
+trueTheta = 0.9
+ma1 = arima.sim(list(order = c(0,0,1), ma = trueTheta), n = 50)
+rhoHat1 = acf(ma1, plot=FALSE)[1]  # = .507 (lag 1 sample ACF)
+rhoHat1 = rhoHat1$acf[1][1]
+rhoHat1^2
+thetaHat = (1- sqrt(1 - 4*rhoHat1^2)) / (2*rhoHat1)
+thetaHat 
+trueTheta
 
+# -------Maximum likelihood---------------------
 
-#-------------------- Maximum likelihood --------------------- 
 # Example 3.31
 # Note: I'm not convinced this is really the MLE...
 #  ... but eventually 'sarima()' will be used
