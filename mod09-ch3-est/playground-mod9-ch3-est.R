@@ -147,11 +147,3 @@ lines(u, dnorm(u, mean=.96, sd=.03), lty=2, lwd=2)
 legend(.65, 14, legend=c('true distribution', 'bootstrap distribution',
                          'normal approximation'), bty='n', lty=c(1,0,2), lwd=c(2,0,2),
        col=1, pch=c(NA,22,NA), pt.bg=c(NA,culer,NA), pt.cex=2.5)
-
-# Section 3.6 Integrated Models for Nonstationary Data
-
-# Example 3.38
-set.seed(666)
-x = arima.sim(list(order = c(0,1,1), ma = -0.8), n = 100)
-(x.ima = HoltWinters(x, beta=FALSE, gamma=FALSE))  # Î± is 1-Î» here
-plot(x.ima)
