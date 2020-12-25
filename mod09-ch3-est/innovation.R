@@ -20,5 +20,9 @@ computeInnovations <- function(x)
 simulated = arima.sim(n = 1000, list(ar = c(1/2)))
 myInnovations = computeInnovations(simulated)
 plot(myInnovations)
-acf(myInnovations, cov=TRUE)
+acf(myInnovations, type="covariance")
+acf(myInnovations, type="correlation")
+
 acf(myInnovations, plot = FALSE)
+
+

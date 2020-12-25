@@ -5,6 +5,48 @@ if (suppressWarnings(!require("astsa"))) {
   library(astsa)
 }
 
+# ---B: double cumsum------------------
+n = 1000
+x = rnorm(n)
+xc1 = cumsum(x)
+xc2 = cumsum(xc1)
+par(mfrow = c(3,1))
+plot(x)
+plot(xc1, type = "l")
+plot(xc2, type = "l")
+head(xc2)
+min(xc2)
+par(mfrow = c(1,1))
+plot(xc2, type = "l")
+
+rw = arima.sim(n = n, list(order = c(0, 1, 0)))
+par(mfrow = c(1,1))
+plot(rw, type = "l")
+
+n = 1000
+rw2 = arima.sim(n = n, list(order = c(0, 2, 0)))
+par(mfrow = c(1, 2))
+plot(rw2, type = "l", main = 'Full ARIMA(0, 2, 0)')
+# let's take a closer look at arima(0, 2, 0), please change values as you like
+plot(ts(rw2[1:20]), type = 'l', main = 'First 20 values of ARIMA(0, 2, 0)')
+
+# Same, but with ARMA on top
+n = 10000
+arima021 = arima.sim(n = n, model = list(ma = 1/2, order = c(0, 2, 1)))
+par(mfrow = c(3,1))
+plot(arima021, type = "l")
+arima011 = diff(arima021)
+plot(arima011, type = "l")
+arima001 = diff(arima011)
+plot(arima001, type = "l")
+
+# ====================== 
+library(astsa)
+fit <- sarima(log(varve), 1, 1, 1)
+fit$fit$coef
+# ========================== 
+
+
 # Section 3.6 Integrated Models for Nonstationary Data
 
 # Example 3.38
@@ -12,6 +54,7 @@ set.seed(666)
 x = arima.sim(list(order = c(0,1,1), ma = -0.8), n = 100)
 (x.ima = HoltWinters(x, beta=FALSE, gamma=FALSE))  # Î± is 1-Î» here
 plot(x.ima)
+class(x.ima)
 
 # Section 3.7 Building ARIMA Models
 
@@ -29,6 +72,9 @@ ARMAtoMA(ar=.35, ma=0, 10)  # prints psi-weights
 sarima(log(varve), 0, 1, 1, no.constant=TRUE)   # ARIMA(0,1,1)
 sarima(log(varve), 1, 1, 1, no.constant=TRUE)   # ARIMA(1,1,1)
 
+
+
+# =================================== 
 # Section 3.8 Regression with Autocorrelated Errors
 
 # Example 3.44
