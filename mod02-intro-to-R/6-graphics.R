@@ -23,7 +23,7 @@ input <- mtcars[,c('mpg','cyl')]
 # Plot the chart.
 boxplot(mpg ~ cyl, data = mtcars, xlab = "Number of Cylinders",
         ylab = "Miles Per Gallon", main = "Mileage Data")
-
+# stopped here
 # ==================== histograms ===========================
 # Create data for the graph.
 v <-  c(9,13,21,8,36,22,12,41,31,33,19)
@@ -36,7 +36,7 @@ hist(v, xlab = "Weight", col = "yellow", border = "blue")
 input <- mtcars[,c('wt','mpg')]
 
 # Plot the chart for cars with weight between 2.5 to 5 and mileage between 15 and 30.
-plot(x = input$wt,y = input$mpg,
+plot(x = input$wt, y = input$mpg,
      xlab = "Weight",
      ylab = "Milage",
      xlim = c(2.5,5),
@@ -44,12 +44,19 @@ plot(x = input$wt,y = input$mpg,
      main = "Weight vs Milage"
 )
 
+y = c(1, 4, 3)
+x = c(10, 20, 30)
+plot(formula = y ~ x)
 
 # ==================== line graphs ===========================
 # Create the data for the chart.
 v <- c(7,12,28,3,41)
 
 # Plot the line graph.
+# type = "p"
+# type = "l"
 plot(v, type = "o",  col = "red",  xlab = "Month",  ylab = "Rain fall",
      main = "Rain fall chart")
 # type="o" means overplotted
+secondData = c(10, 2, 30)
+lines(secondData)

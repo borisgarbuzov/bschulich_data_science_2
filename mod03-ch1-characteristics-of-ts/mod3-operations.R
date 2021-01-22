@@ -22,7 +22,7 @@ mean(centeredX)
 # i. Plus
 y = ts(c(100, 200, 300))
 myAddition = x + y
-
+myAddition
 
 # ii. Minus, ...
 mySubtraction = x - y
@@ -201,6 +201,8 @@ length(v)
 par(mfrow=c(2,1))
 plot.ts(w, main="white noise")
 plot.ts(v, ylim=c(-3,3), main="moving average")
+
+# Stopped here
 
 dfMatchedTime = ts.intersect(lag(w, k= -1), as.ts(w), lag(w, k = 1),
                              dframe = T)

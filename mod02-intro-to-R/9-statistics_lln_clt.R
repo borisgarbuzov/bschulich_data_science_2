@@ -1,6 +1,6 @@
 rm(list = ls())
 
-#================ LLT example =================
+#================ LLN example =================
 LawOfLargeNumbers <- function(num.tries)
 {
   TrueMean = 3.5
@@ -29,4 +29,4 @@ CentralLimitTheorem <- function(n, r, min, max)
   hist(Means, xlab = "means", main = "Sample mean")
 }
 
-CentralLimitTheorem(n = 200, r = 1000, min = -10, max = 10)
+CentralLimitTheorem(n = 20000, r = 1000, min = -10, max = 10)

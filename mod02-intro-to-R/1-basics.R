@@ -12,8 +12,8 @@ sin(pi / 2) # sinusoids
 exp(1)^(-2) # power
 sqrt(8) # square root
 1:5 # sequences
-seq(1, 10, by=2) # sequences
-rep(2, 3) # repeat 2 three times
+seq(1, 11, by=2) # sequences
+rep(x=2, times=3) # repeat 2 three times
 
 #================ assignments and objects =================
 x <- 1 + 2 # put 1 + 2 in object x
@@ -22,3 +22,4 @@ x = 1 + 2 # same as above with fewer keystrokes
 x # view object x
 (y = 9 * 3) # put 9 times 3 in y and view the result
 (z = rnorm(5)) # put 5 standard normals into z and print z
+
