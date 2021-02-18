@@ -47,6 +47,8 @@ tsp(soi)
 dim(soi)
 is.ts(soi)
 
+# stopped here
+
 myAcf = acf(soi, 6, plot=FALSE)
 names(myAcf)
 myAcf$acf
@@ -67,10 +69,10 @@ x1
 # We converted from {0, 1} to {-1, 1}
 y1 = 5 + filter(x1, sides=1, filter=c(1,-.7))[-1]
 y1
-unique(y1)
+unique(y1) # Added by Boris. Curiosity about the values
 y2 = 5 + filter(x2, sides=1, filter=c(1,-.7))[-1]
 y2
-unique(y2)
+unique(y2) # Added by Boris. Curiosity about the values
 tsplot(y1, type='s')  # plot series
 tsplot(y2, type='s')
 tsplot(y1, type='l')  # plot series

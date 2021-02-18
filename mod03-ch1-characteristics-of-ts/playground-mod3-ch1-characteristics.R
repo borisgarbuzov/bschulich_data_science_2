@@ -24,7 +24,7 @@ plot(jj, type="o", ylab="Quarterly Earnings per Share")
 # plot using library astsa. It has grid.
 # This plot is buildup on top of the regular plot. 
 tsplot(jj, type="o", ylab="Quarterly Earnings per Share")
-
+# Stopped here
 
 # Example 1.2
 tsplot(globtemp, type="o", ylab="Global Temperature Deviations")
@@ -91,7 +91,7 @@ x = filter(w, filter=c(1,-.9), method="recursive")
 # What is recursive doing here? 
 # Why do we need to drop the first 50?
 # Most likely, to avoid NA's, it uses 2 extra zeros for the noise
-# And since it was innatural, the consequences of this will disappear after a while.
+# And since it was unnatural, the consequences of this will disappear after a while.
 # So we avoid more than just 2. 50 may be too big. 
 # Hypothesis about recursive. 
 # Because we said recursive, 

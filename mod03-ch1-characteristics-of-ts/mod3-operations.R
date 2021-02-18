@@ -4,6 +4,7 @@ rm(list=ls())
 # 1. Pointwise.
 # a. Unary.
 x = ts(c(10, 20, 30))
+x
 time(x)
 
 # i. Multiplication by constant.
@@ -26,11 +27,14 @@ myAddition
 
 # ii. Minus, ...
 mySubtraction = x - y
+time(mySubtraction)
+names(mySubtraction)
 
 # 2. Non-local
 # a. Backshift
 y = lag(x, k=-1)
 time(y)
+y[1]
 
 # b. Forward shift
 forwardShiftedX = lag(x, k=1)
@@ -45,6 +49,7 @@ time(higherOrderBackShiftedX)
 difX = diff(x)
 difX
 time(difX)
+# stopped here
 
 # Explicit lag
 # We do not need to put a minus here

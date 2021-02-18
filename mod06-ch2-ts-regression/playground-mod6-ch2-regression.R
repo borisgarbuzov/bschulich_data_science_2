@@ -61,6 +61,7 @@ myTsp = tsp(cmort)
 myTsp
 # plot(myTsp) # just 3 points
 plot(trend)
+# Stopped here
 
 # -------------- Example 2.3 ---------------------- 
 # Bind several time series, having the same frequency
