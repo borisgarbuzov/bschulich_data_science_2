@@ -6,7 +6,7 @@ if (suppressWarnings(!require("astsa"))) {
 }
 
 
-maseries = arima.sim(list(order=c(0,0,1), ma=.9), n=100000)
+maseries = arima.sim(list(order=c(0,0,1), ma=.9), n=100)
 acf(maseries)
 
 

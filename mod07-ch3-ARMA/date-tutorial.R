@@ -37,6 +37,7 @@ six.weeks <- seq(dt1, length = 6, by = "week")
 six.weeks
 # Six dates differing by a week
 
+
 six.fortnight <- seq(dt1, length = 6, by = 14)
 six.fortnight
 # Six dates differing by 14 days
@@ -116,7 +117,7 @@ pisixlt_unlisted = unlist(tm1.lt)
 pisixlt_unlisted
 class(pisixlt_unlisted)
 tm1.lt$sec
-
+names(tm1.lt)
 tm1.lt$wday
 
 tm1.lt_min_truncated = trunc(tm1.lt, "days")
@@ -153,3 +154,4 @@ lm(ts_freq_1 ~ time(ts_freq_1))
 ts_freq_12 <- ts(1:5, start = 2020, frequency = 12)
 time(ts_freq_12)
 lm(ts_freq_12 ~ time(ts_freq_12))
+

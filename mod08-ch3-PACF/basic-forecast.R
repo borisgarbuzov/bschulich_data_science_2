@@ -36,9 +36,10 @@ basic_forecast <- function(p = 0, # AR order
   arima_title_prefix = 'Test values with past vs forecast for'
   arima_title_suffix <- paste0('ARIMA(', p, ', ', d, ', ', q, ')')
   
-  plot(test_sim, type = 'l', ylab = 'values',
+  plot(test_sim, type = 'l', ylab = 'values', col = "purple", 
        main = paste(arima_title_prefix, arima_title_suffix),
        ylim = c(min(test_sim, predicted, lower), max(test_sim, predicted, upper)))
+  abline(h = 0)
   lines(predicted, col = 'red')
   lines(upper, lty = 'dashed', lwd = 2, col = 'springgreen4')
   lines(lower, lty = 'dashed', lwd = 2, col = 'springgreen4')
@@ -46,7 +47,7 @@ basic_forecast <- function(p = 0, # AR order
   legend("topright",
          legend = c('test', 'forecast', 'where forecast starts',
                     'confidence interval'),
-         col = c('black', 'red', 'blue', 'springgreen4'), lty = c(rep(1, 3), 2),
+         col = c('purple', 'red', 'blue', 'springgreen4'), lty = c(rep(1, 3), 2),
          y.intersp = .7, cex = .7)
   
   # plot residuals for forecast
@@ -112,11 +113,11 @@ basic_forecast (p = 5,
                 train_lenght = 800)
 
 # ARIMA(0, 1, 0), random walk
-basic_forecast (p = 1,
+basic_forecast (p = 0,
                 d = 1,
-                q = 1,
-                theta = 0,
-                phi = 0,
+                q = 0,
+                theta = NULL,
+                phi = NULL,
                 n = 1000,
                 train_lenght = 800)
 

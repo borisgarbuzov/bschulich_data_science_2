@@ -1,3 +1,4 @@
+rm(list = ls())
 if (suppressWarnings(!require("astsa"))) {
   install.packages("astsa")
   library(astsa)
@@ -7,6 +8,8 @@ if (suppressWarnings(!require("astsa"))) {
 chicken
 tsp(chicken)
 time(chicken)
+length(chicken)
+(2001.583 - 2016.500)*12
 (2015.750 - 2015.833)*12
 # so the time difference between two observations is 1/12
 dim(chicken)

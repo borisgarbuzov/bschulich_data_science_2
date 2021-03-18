@@ -1,8 +1,8 @@
 rm(list = ls())
 
-set.seed(42) # set seed to reproduce results below
-x <- rnorm(5)
-y <- x + rnorm(5)
+# set.seed(1) # set seed to reproduce results below
+x <- rnorm(50)
+y <- 1*x + rnorm(50)
 fit <- lm(y ~ x) # fit linear model
 
 # we can get summary for our model (residuals, coefficients, R-squared, etc.)
