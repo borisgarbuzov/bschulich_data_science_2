@@ -46,8 +46,8 @@ plot(whiteNoiseTimesTShiftedLog)
 difSeries = diff(whiteNoiseTimesTShifted)
 plot(difSeries)
 
-# 2a. 
-# Logarithm did not help. 
+# 2a.
+# Logarithm did not help.
 # We may try directly the inverse transformation
 # Frist, we need to demean or center it
 meanHat = mean(whiteNoiseTimesTShifted)
@@ -70,7 +70,7 @@ for (i in 1:1000) {
 par(mfrow = c(1, 1))
 plot(as.ts(s))
 
-# ========== 3. How to extract trend ========== 
+# ========== 3. How to extract trend ==========
 # Successful
 n = 100
 whiteNoise = ts(rnorm(n=n, sd = 100))
@@ -100,4 +100,3 @@ lines(lowess(b, a), col = 2, lwd = 2)
 
 plot(c, a, main = 'A vs C')
 lines(lowess(c, a), col = 2, lwd = 2)
-

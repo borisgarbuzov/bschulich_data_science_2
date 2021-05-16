@@ -1,7 +1,6 @@
-
 # Simulate the process with given parametsrs
 # Predictcs the given number of units forward
-# Plots both history, real furture and predicted future. 
+# Plots both history, real furture and predicted future.
 basic_forecast <- function(p = 0, # AR order
                            d = 0, # Integration order
                            q = 0, # MA order
@@ -12,31 +11,31 @@ basic_forecast <- function(p = 0, # AR order
 {
   # remove all the previous plots
   graphics.off()
-  
+
   # Simulate the whole vector of train and test together
   sim <- arima.sim(model = list(order = c(p, d, q), ar = phi, ma = theta),
                    n = n)
   # Split the whole array into train and test parts
   train_sim <- ts(sim[1:train_lenght])
   test_sim <- ts(sim[train_lenght:n], start = train_lenght)
-  
-  # Estimate the ARIMA coefficients and pack them into a model. 
+
+  # Estimate the ARIMA coefficients and pack them into a model.
   arima_fit <- arima(train_sim, order = c(p, d, q))
-  
+
   # By the estimated model, predict the future of size n - train_lenght
   arima_predict <- predict(arima_fit, n.ahead = n - train_lenght)
   # Extract the predicted values
   predicted <- arima_predict$pred
   # Extract the standard errors
   standard_err <- arima_predict$se
-  
+
   # plot forecast with past and confidence interval
   upper <- predicted + standard_err
   lower <- predicted - standard_err
   arima_title_prefix = 'Test values with past vs forecast for'
   arima_title_suffix <- paste0('ARIMA(', p, ', ', d, ', ', q, ')')
-  
-  plot(test_sim, type = 'l', ylab = 'values', col = "purple", 
+
+  plot(test_sim, type = 'l', ylab = 'values', col = "purple",
        main = paste(arima_title_prefix, arima_title_suffix),
        ylim = c(min(test_sim, predicted, lower), max(test_sim, predicted, upper)))
   abline(h = 0)
@@ -49,7 +48,7 @@ basic_forecast <- function(p = 0, # AR order
                     'confidence interval'),
          col = c('purple', 'red', 'blue', 'springgreen4'), lty = c(rep(1, 3), 2),
          y.intersp = .7, cex = .7)
-  
+
   # plot residuals for forecast
   resid_forecast <- test_sim[2:length(test_sim)] - predicted
   plot(resid_forecast, type = 'p', ylab = 'residuals',
@@ -93,7 +92,7 @@ basic_forecast (p = 1,
                 train_lenght = 990)
 
 
-# ARIMA(1, 0, 1), 
+# ARIMA(1, 0, 1),
 basic_forecast (p = 1,
                 d = 0,
                 q = 1,
@@ -103,7 +102,7 @@ basic_forecast (p = 1,
                 train_lenght = 800)
 
 
-# ARIMA(5, 0, 5), 
+# ARIMA(5, 0, 5),
 basic_forecast (p = 5,
                 d = 0,
                 q = 5,
@@ -121,7 +120,7 @@ basic_forecast (p = 0,
                 n = 1000,
                 train_lenght = 800)
 
-# ARIMA(1, 1, 1), 
+# ARIMA(1, 1, 1),
 basic_forecast (p = 1,
                 d = 1,
                 q = 1,
@@ -129,11 +128,3 @@ basic_forecast (p = 1,
                 phi = 1/2,
                 n = 1000,
                 train_lenght = 800)
-
-
-
-x <- arima.sim(list(order = c(1, 0, 0), ar = .8), n = 30)
-fit_ols <- ar.yw(x, order.max = 1)
-fit_ols
-predict(fit_ols, n.ahead = 5)
-

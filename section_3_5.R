@@ -5,80 +5,14 @@ if (suppressWarnings(!require("astsa"))) {
   library(astsa)
 }
 
-#=============Book section 3.4. Forecasting ===================== 
-# --------------- Example 3.25 ---------------------- 
-# Add confidence interval for fitted values
-par(mfrow=c(1, 1))
-regr = ar.ols(rec, order=2, demean=FALSE, intercept=TRUE)
-fore = predict(regr, n.ahead=24)
-# Plot 2 arrays in 2 colors
-ts.plot(rec, fore$pred, col=1:2, xlim=c(1980,1990), ylab="Recruitment")
-# Add red circles over red line for some reason. 
-lines(fore$pred, type="p", col=2)
-lines(fore$pred+fore$se, lty="dashed", col=4)
-lines(fore$pred-fore$se, lty="dashed", col=4)
-# There is no true future to compare. 
-# We could also use forecast::forecast, 
-# but this is simpler. 
-# It is sensible to use forecast::forecast, when using forecast::auto.arima.
-# stopped here
-
-# Example 3.26
-set.seed(90210)
-x = arima.sim(list(order = c(1,0,1), ar =.9, ma=.5), n = 100)
-xr = rev(x) # xr is the reversed data
-xr
-typeof(xr)
-class(xr)
-fit = arima(xr, order=c(1,0,1))
-fit
-# The results of fit are: 
-# AR coefficient phi1Hat = 0.7800 instead of true phi1 = 0.9
-# MA coefficient theta1Hat = 0.5991 instead of true theta1 = 0.5
-# interceptHat = 1.7963 instead of true intercept = 0
-pxr = predict(fit, n.ahead = 10) # predict previous 10 before reversed data
-pxrp = rev(pxr$pred) # reorder the predictors (for plotting)
-pxrse = rev(pxr$se) # reorder the SEs
-# start=-9 because n.ahead = 10 minus 1 (starting time)
-nx = ts(c(pxrp, x), start=-9) # attach the backcasts to the data
-tsplot(nx, ylab=expression(X[~t]), main='Backcasting')
-U = nx[1:10] + pxrse; L = nx[1:10] - pxrse
-# Prepare x and y for polygon
-xx = c(-9:0, 0:-9); yy = c(L, rev(U))
-polygon(xx, yy, border = 8, col = gray(0.6, alpha = 0.2))
-lines(-9:0, nx[1:10], col=2, type='o')
-
 # Section 3.5 Estimation
 
 # Example 3.28
-rec.yw = ar.yw(rec, order=2) # fit
-# Experiments------------
-names(rec.yw)
-rec.yw$order
-rec.yw$ar
-rec.yw$aic
-rec.yw$n.used
-rec.yw$n.obs # This may be smaller, excluding NA
-rec.yw$order.max
-rec.yw$partialacf # Lags up to order max
-rec.yw$partialacf
-rec.yw$partialacf
-rec.yw$partialacf
-rec.yw$resid
-rec.yw$method
-rec.yw$series # name
-rec.yw$method
-rec.yw$frequency # inhereted from ts
-rec.yw$call
-rec.yw$frequency
-rec.yw$asy.var.coef # var-cov matrix of coef vector
-# End of experiments------------
-
+rec.yw = ar.yw(rec, order=2)
 rec.yw$x.mean  # = 62.26278 (mean estimate)
 rec.yw$ar      # = 1.3315874, -.4445447  (parameter estimates)
 sqrt(diag(rec.yw$asy.var.coef))  # = .04222637, .04222637  (standard errors)
 rec.yw$var.pred  # = 94.79912 (error variance estimate)
-
 
 rec.pr = predict(rec.yw, n.ahead=24)
 U = rec.pr$pred + rec.pr$se
@@ -91,17 +25,11 @@ lines(L, col="blue", lty="dashed")
 
 # Example 3.29
 set.seed(2)
-trueTheta = 0.9
-ma1 = arima.sim(list(order = c(0,0,1), ma = trueTheta), n = 50)
-rhoHat1 = acf(ma1, plot=FALSE)[1]  # = .507 (lag 1 sample ACF)
-rhoHat1 = rhoHat1$acf[1][1]
-rhoHat1^2
-thetaHat = (1- sqrt(1 - 4*rhoHat1^2)) / (2*rhoHat1)
-thetaHat 
-trueTheta
+ma1 = arima.sim(list(order = c(0,0,1), ma = 0.9), n = 50)
+acf(ma1, plot=FALSE)[1]  # = .507 (lag 1 sample ACF)
 
-# -------Maximum likelihood---------------------
 
+#-------------------- Maximum likelihood ---------------------
 # Example 3.31
 # Note: I'm not convinced this is really the MLE...
 #  ... but eventually 'sarima()' will be used

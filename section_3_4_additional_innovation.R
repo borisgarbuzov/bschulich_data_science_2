@@ -22,7 +22,3 @@ myInnovations = computeInnovations(simulated)
 plot(myInnovations)
 acf(myInnovations, type="covariance")
 acf(myInnovations, type="correlation")
-
-acf(myInnovations, plot = FALSE)
-
-
